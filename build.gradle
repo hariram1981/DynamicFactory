@@ -1,0 +1,31 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+jar {
+    baseName = 'dynamicfactory'
+    version =  '0.1'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://10.30.60.243:8080/archiva/repository/internal/" }
+}
+
+dependencies {
+    compile("log4j:log4j:1.2.17")
+    compile("junit:junit:4.4")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}
