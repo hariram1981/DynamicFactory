@@ -9,10 +9,21 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'maven'
+
+uploadArchives {
+	repositories.mavenDeployer {
+		repository (url: "file:///home/hariram/Personal/github/maven-repo-snapshot")
+		pom.version = '0.2'
+		pom.artifactId = 'dynamicfactory'
+		pom.groupId = 'com.hariram'
+	}
+}
+
 
 jar {
     baseName = 'dynamicfactory'
-    version =  '0.1'
+    version =  '0.2'
 }
 
 repositories {
