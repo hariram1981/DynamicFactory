@@ -1,2 +1,4 @@
 0.1 - Initial version
     - added Dynamic Factory class that implements Factory Pattern dynamically
+0.2 - Added logging using log4j
+    - added removal of warnings for Class general (using Class<? extends Object>)

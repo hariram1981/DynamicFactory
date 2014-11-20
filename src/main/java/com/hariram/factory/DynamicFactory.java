@@ -21,13 +21,13 @@ import org.apache.log4j.Logger;
  */
 public class DynamicFactory {
 	private List<String> types; 
-	private Class returnClassName;
+	private Class<? extends Object> returnClassName;
 	private static final Logger LOGGER = Logger.getLogger(DynamicFactory.class);
 	
 	/**
 	 * Public constructor with list<string> and class as argument
 	 */
-	public DynamicFactory(List<String> types, Class returnClassName) {
+	public DynamicFactory(List<String> types, Class<? extends Object> returnClassName) {
 		this.types = types;
 		this.returnClassName = returnClassName;
 	}
@@ -55,7 +55,7 @@ public class DynamicFactory {
 	 * 
 	 * @return
 	 */
-	public Class getReturnClassName() {
+	public Class<? extends Object> getReturnClassName() {
 		return returnClassName;
 	}
 
@@ -75,7 +75,7 @@ public class DynamicFactory {
 	 * @return object
 	 */
 	public Object getObject(String type) {
-		LOGGER.info("In getObject, type: " + type +", types: " + types + ", returnClassName: " + returnClassName);
+		LOGGER.info("DynamicFactory.getObject, type: " + type +", types: " + types + ", returnClassName: " + returnClassName);
 		if(validate()){
 			return new Object();
 		}
@@ -86,14 +86,14 @@ public class DynamicFactory {
 			.forEach(t -> {
 				try {
 					String subClassNameStr = t;
-					Class subClassName = Class.forName(packageName.getName() + "." + subClassNameStr + returnClassName.getSimpleName());
+					Class<? extends Object> subClassName = Class.forName(packageName.getName() + "." + subClassNameStr + returnClassName.getSimpleName());
 					Object obj = subClassName.newInstance();
 					objs.add(obj);
 				} catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-					//Log here
-					LOGGER.info("Exception while creating object of class, message: " + e.getMessage());
+					LOGGER.error("DynamicFactory.getObject, message: " + e.getClass() + " " + e.getMessage());
 				}
 			});
+		LOGGER.info("DynamicFactory.getObject, finished");
 		
 		return (objs.size() == 0) ? new Object() : objs.get(0);
 	}
