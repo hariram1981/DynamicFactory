@@ -44,6 +44,8 @@ Usage
 
 - In above, Connection is the return class and the objects created are DBConnection and FileConnection. Hence the types of connection classes to be created by factory are "DB" and "File".
 
+Dynamically creates classes based on the factory pattern for a set of classes (the types of classes are mentioned as an enum paraaeter and the base class is passed as parameter)
+
 License
 ==========
 Copyright (c) 2014 GitHub, Inc. See the LICENSE file for license rights and limitations (GNU GPL v2.0)
