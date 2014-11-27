@@ -64,7 +64,7 @@ public class DynamicFactory {
 	 * 
 	 * @param returnClassName
 	 */
-	public void setReturnClassName(Class returnClassName) {
+	public void setReturnClassName(Class<? extends Object> returnClassName) {
 		this.returnClassName = returnClassName;
 	}
 	
