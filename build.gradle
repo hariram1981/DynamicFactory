@@ -13,8 +13,8 @@ apply plugin: 'maven'
 
 uploadArchives {
 	repositories.mavenDeployer {
-		repository (url: "file:///home/hariram/Personal/github/maven-repo-snapshot")
-		pom.version = '0.2'
+		repository (url: "file:///home/hariram/Personal/github/maven-repo-release")
+		pom.version = '1.0'
 		pom.artifactId = 'dynamicfactory'
 		pom.groupId = 'com.hariram'
 	}
@@ -23,7 +23,7 @@ uploadArchives {
 
 jar {
     baseName = 'dynamicfactory'
-    version =  '0.2'
+    version =  '1.0'
 }
 
 repositories {
